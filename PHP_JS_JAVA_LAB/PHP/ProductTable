@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>Product Table</title>
+</head>
+<body>
+  <h1>Product Table</h1>
+  <form method="post">
+    <p><input type="submit" value="Create and Display Table"></p>
+  </form>
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $conn = pg_connect("host=localhost dbname=postgres user=postgres password=post") or die("Connection failed");
+    $sql = "CREATE TABLE product (
+      itemcode VARCHAR(10) PRIMARY KEY,
+      itemname VARCHAR(100) NOT NULL,
+      unitprice NUMERIC(8,2) NOT NULL
+    )";
+    $result = pg_query($conn, $sql) or die("Query failed");
+    $sql = "INSERT INTO product (itemcode, itemname, unitprice) VALUES
+      ('P001', 'Laptop', 50000.00),
+      ('P002', 'Mouse', 500.00),
+      ('P003', 'Keyboard', 1000.00),
+      ('P004', 'Monitor', 15000.00),
+      ('P005', 'Printer', 10000.00)
+    ";
+    $result = pg_query($conn, $sql) or die("Query failed");
+    $sql = "SELECT * FROM product";
+    $result = pg_query($conn, $sql) or die("Query failed");
+    echo "<table border='1'>";
+    echo "<tr><th>Item Code</th><th>Item Name</th><th>Unit Price</th></tr>";
+    while ($row = pg_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td>" . $row['itemcode'] . "</td>";
+      echo "<td>" . $row['itemname'] . "</td>";
+      echo "<td>" . $row['unitprice'] . "</td>";
+      echo "</tr>";
+    }
+    echo "</table>";
+    pg_close($conn);
+  }
+  ?>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Pay Slip Generator</title>
+</head>
+<body>
+  <h1>Pay Slip Generator</h1>
+  <form method="post">
+    <p>Name: <input type="text" name="name" required></p>
+    <p>Basic Salary: <input type="number" name="basic" required></p>
+    <p>Designation:
+      <select name="designation" required>
+        <option value="manager">Manager</option>
+        <option value="supervisor">Supervisor</option>
+        <option value="clerk">Clerk</option>
+        <option value="peon">Peon</option>
+      </select>
+    </p>
+    <p><input type="submit" value="Generate Pay Slip"></p>
+  </form>
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $basic = $_POST["basic"];
+    $designation = $_POST["designation"];
+
+    $conveyance = array("manager" => 1000, "supervisor" => 750, "clerk" => 500, "peon" => 250);
+    $extra = array("manager" => 500, "supervisor" => 200, "clerk" => 100, "peon" => 0);
+
+    $hra = 0.24 * $basic;
+
+    $gross = $basic + $hra + $conveyance[$designation] + $extra[$designation];
+
+    if ($gross <= 200) {
+      $tax = 0;
+    } elseif ($gross <= 4000) {
+      $tax = 0.03 * $gross;
+    } elseif ($gross <= 5000) {
+      $tax = 0.05 * $gross;
+    } else {
+      $tax = 0.08 * $gross;
+    }
+
+    $net = $gross - $tax;
+
+    echo "<h2>Pay Slip of $name</h2>";
+    echo "<p>Designation: $designation</p>";
+    echo "<p>Basic Salary: $basic</p>";
+    echo "<p>HRA: $hra</p>";
+    echo "<p>Conveyance Allowance: $conveyance[$designation]</p>";
+    echo "<p>Extra Allowance: $extra[$designation]</p>";
+    echo "<p>Gross Salary: $gross</p>";
+    echo "<p>Income Tax: $tax</p>";
+    echo "<p>Net Salary: $net</p>";
+  }
+  ?>
+</body>
+</html>

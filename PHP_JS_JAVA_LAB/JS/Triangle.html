@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = parseInt(prompt("Enter first side"))
+        var b = parseInt(prompt("Enter second side"))
+        var c = parseInt(prompt("Enter third side"))
+
+        if(a+b<c || b+c<a || c+a <b){
+            alert("Cannot form a Triangle")
+        }
+        else if(a==b & b==c){
+            alert("Equilateral Triangle")
+        }
+        else if(a==b || b==c || c==b){
+            alert("isoscles Traianle")
+        }
+    
+        else{
+            alert("Scalene Triangle")
+        }
+        var p = (a+b+c)/2
+        var area = Math.sqrt(p*(p-a)*(p-b)*(p-c))
+        document.write("Area = "+area)
+
+
+
+    </script>
+</body>
+</html>

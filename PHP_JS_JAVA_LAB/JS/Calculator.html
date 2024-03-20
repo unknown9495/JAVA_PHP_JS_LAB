@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+
+<script>
+    function add(){
+        var a = parseInt(document.getElementById('num1').value)
+        var b = parseInt(document.getElementById('num2').value)
+        var r = a+b
+        // alert(r)
+        document.getElementById('result').innerHTML = a+"+"+b+"="+r
+    }
+    function sub(){
+        var a = parseInt(document.getElementById('num1').value)
+        var b = parseInt(document.getElementById('num2').value)
+        var r = a-b
+        // alert(r)
+        document.getElementById('result').innerHTML = a+"-"+b+"="+r
+    }
+    function mul(){
+        var a = parseInt(document.getElementById('num1').value)
+        var b = parseInt(document.getElementById('num2').value)
+        var r = a*b
+        // alert(r)
+        document.getElementById('result').innerHTML = a+"*"+b+"="+r
+    }
+    function div(){
+        var a = parseInt(document.getElementById('num1').value)
+        var b = parseInt(document.getElementById('num2').value)
+        var r = a/b
+        // alert(r)
+        document.getElementById('result').innerHTML = a+"/"+b+"="+r
+    }
+</script>
+<form action="">
+    Enter number 1 : <input type="text" id = "num1"><br>
+    Enter number 2 : <input type="text" id = "num2"><br>
+    <input type="button" value="ADD(+)" onclick="add()">
+    <input type="button" value="SUB(-)" onclick="sub()">
+    <input type="button" value="MUL(*)" onclick="mul()">
+    <input type="button" value="DIV(/)" onclick="div()">
+
+</form>
+<p id = "result"></p>
+</html>

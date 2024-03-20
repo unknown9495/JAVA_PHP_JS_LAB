@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark List</title>
+</head>
+<body>
+    <h2>Student Mark List</h2>
+
+    <form method="post" action="">
+        <label for="roll_no">Enter Roll Number:</label>
+        <input type="number" id="roll_no" name="roll_no" required>
+        <input type="submit" value="Get Mark List">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $db = pg_connect("host=localhost dbname=postgres user=postgres password=post");
+
+        if (!$db) {
+            die("Database connection failed.");
+        }
+
+        $roll_no = $_POST['roll_no'];
+        $query = "SELECT name, mark, grade FROM student WHERE roll_no = $roll_no";
+        $result = pg_query($db, $query);
+
+        if ($row = pg_fetch_assoc($result)) {
+            echo "<p><b>Name:</b> " . $row['name'] . "</p>";
+            echo "<p><b>Mark:</b> " . $row['mark'] . "</p>";
+            echo "<p><b>Grade:</b> " . $row['grade'] . "</p>";
+        } else {
+            echo "<p>Student with Roll Number $roll_no not found.</p>";
+        }
+
+        pg_close($db);
+    }
+    ?>
+
+</body>
+</html>
+
+
+#########Sql############
+
+CREATE TABLE student (
+    roll_no serial PRIMARY KEY,
+    name VARCHAR(50),
+    mark INTEGER,
+    grade CHAR(2)
+);
+
+INSERT INTO student (name, mark, grade) VALUES
+('John', 85, 'A'),
+('Alice', 72, 'B'),
+('Bob', 93, 'A+');

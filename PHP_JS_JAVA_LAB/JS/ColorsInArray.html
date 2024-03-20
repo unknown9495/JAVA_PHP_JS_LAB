@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="button" onclick = "change(0)" value ="red">
+        <input type="button" onclick = "change(1)" value ="blue">
+        <input type="button" onclick = "change(2)" value ="green">
+        <input type="button" onclick = "change(3)" value ="yellow">
+        <input type="button" onclick = "change(4)" value ="pink">
+    </form>
+    <script>
+        function change(i){
+            var colors = ["red" , "blue" , "green" , "yellow" , "pink"]
+            document.body.style.background = colors[i]
+        }
+    </script>
+</body>
+</html>

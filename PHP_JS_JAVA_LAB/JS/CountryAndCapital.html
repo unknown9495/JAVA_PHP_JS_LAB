@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>SELECT A COUNTRY</h3>
+    <select  id="country" onchange="capital()">
+        <option value="default">---SELECT---</option>
+        <option value="mxc">MEXICO</option>
+        <option value="jpn">JPAN</option>
+        <option value="ind">INDIA</option>
+        <option value="nrw">NORWAY</option>
+    </select><br>
+    capital : <input type="text" id = "capital">
+
+    <script>
+        function capital(){
+            var cap = document.getElementById('capital')
+            var cnt = document.getElementById('country').value;
+            var capitals = {"default":" " , "mxc":"Mexico city" , "jpn":"tikyo" , "ind":"delhi" , "nrw":"orlo"}
+            cap.value = capitals[cnt]
+        }
+        
+    </script>
+</body>
+</html>

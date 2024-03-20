@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Enter start year: <input type="text" id="startyear">
+    Enter end year: <input type="text" id="endyear">
+    <button onclick="sunday()">Submit</button>
+
+
+
+    <script>
+        function sunday(){
+            var start = document.getElementById('startyear').value;
+            var end = document.getElementById('endyear').value;
+            var s= ""
+            for(var year = start ; year<=end ; year++){
+                var date = new Date(year , 0 , 1);
+                // console.log(date.getYear());
+                if(date.getDay() ==0){
+                    s = s+year+",";
+                }
+            }
+            document.write("years with jan1 be a sunday are :"+s)
+
+        }
+    </script>
+    
+</body>
+</html>

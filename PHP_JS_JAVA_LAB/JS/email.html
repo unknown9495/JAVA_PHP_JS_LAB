@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function validateEmail(email){
+            if(email.indexOf('@') == -1){
+                return false
+            }
+
+            var parts = email.split('@')
+            console.log(parts);
+            var local = parts[0];
+            var domain = parts[1];
+
+            if(local.length === 0 || domain.length === 0){
+                return false
+            }
+
+            if(local.length<1 || domain.length<1){
+                return false
+            }
+            var dotIndex = domain.lastIndexOf('.')
+            console.log(dotIndex);
+            if(dotIndex == -1 || domain.length - dotIndex<=2){
+                return false
+            }
+        }
+
+        validateEmail("aninilavu4@gmail.com")
+
+
+    </script>
+    
+</body>
+</html>
+
